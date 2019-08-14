@@ -1,0 +1,2 @@
+/home/songhan/srv/build/src/CMakeFiles/main.dir
+/home/songhan/srv/build/src/CMakeFiles/mysrv.dir

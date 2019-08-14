@@ -1,0 +1,1 @@
+/opt/rh/devtoolset-2/root/usr/bin/c++    -rdynamic -O0 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function    CMakeFiles/main.dir/log.cc.o CMakeFiles/main.dir/main.cc.o  -o ../../bin/main -rdynamic ../../lib/libmysrv.so -Wl,-rpath,/home/songhan/srv/lib 

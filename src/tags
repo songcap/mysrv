@@ -1,0 +1,152 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AddAppender	log.h	/^  void AddAppender(LogAppender::ptr appender);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogAppender::ptr appender)
+DEBUG	log.h	/^      DEBUG,$/;"	e	enum:mysrv::LogLevel::Level
+DelAppender	log.h	/^  void DelAppender(LogAppender::ptr appender);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogAppender::ptr appender)
+ERROR	log.h	/^      ERROR,$/;"	e	enum:mysrv::LogLevel::Level
+FATAL	log.h	/^      FATAL$/;"	e	enum:mysrv::LogLevel::Level
+FileLogAppender	log.h	/^    FileLogAppender(const std::string &filename);$/;"	p	class:mysrv::LogLevel::FileLogAppender	access:public	signature:(const std::string &filename)
+FileLogAppender	log.h	/^class FileLogAppender : public LogAppender{$/;"	c	class:mysrv::LogLevel	inherits:LogAppender	access:public
+INFO	log.h	/^      INFO,$/;"	e	enum:mysrv::LogLevel::Level
+Level	log.h	/^    enum Level{$/;"	g	class:mysrv::LogLevel	access:public
+LogAppender	log.cc	/^void LogAppender::LogAppender(std::string & str):m_name(str){$/;"	f	class:LogAppender	signature:(std::string & str)
+LogAppender	log.h	/^   LogAppender(){};$/;"	f	class:mysrv::LogLevel::LogAppender	access:public	signature:()
+LogAppender	log.h	/^class LogAppender{$/;"	c	class:mysrv::LogLevel	access:public
+LogAppender::LogAppender	log.cc	/^void LogAppender::LogAppender(std::string & str):m_name(str){$/;"	f	class:LogAppender	signature:(std::string & str)
+LogEvent	log.h	/^    LogEvent();$/;"	p	class:mysrv::LogLevel::LogEvent	access:public	signature:()
+LogEvent	log.h	/^class LogEvent{$/;"	c	class:mysrv::LogLevel	access:public
+LogFormatter	log.h	/^  LogFormatter();$/;"	p	class:mysrv::LogLevel::LogFormatter	access:public	signature:()
+LogFormatter	log.h	/^class LogFormatter{$/;"	c	class:mysrv::LogLevel	access:public
+LogLevel	log.h	/^class LogLevel{$/;"	c	namespace:mysrv
+Logger	log.cc	/^Logger::Logger(const std::string& name)$/;"	f	class:Logger	signature:(const std::string& name)
+Logger	log.h	/^  Logger(const std::string & name = "root");$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(const std::string & name = �)
+Logger	log.h	/^class Logger{$/;"	c	class:mysrv::LogLevel	access:public
+Logger::Logger	log.cc	/^Logger::Logger(const std::string& name)$/;"	f	class:Logger	signature:(const std::string& name)
+Logger::addAppender	log.cc	/^void Logger::addAppender(LogAppender::ptr appender) {$/;"	f	class:Logger	signature:(LogAppender::ptr appender)
+Logger::debug	log.cc	/^void Logger::debug(LogEvent::ptr event) {$/;"	f	class:Logger	signature:(LogEvent::ptr event)
+Logger::delAppender	log.cc	/^void Logger::delAppender(LogAppender::ptr appender) {$/;"	f	class:Logger	signature:(LogAppender::ptr appender)
+Logger::error	log.cc	/^void Logger::error(LogEvent::ptr event) {$/;"	f	class:Logger	signature:(LogEvent::ptr event)
+Logger::fatal	log.cc	/^void Logger::fatal(LogEvent::ptr event) {$/;"	f	class:Logger	signature:(LogEvent::ptr event)
+Logger::info	log.cc	/^void Logger::info(LogEvent::ptr event) {$/;"	f	class:Logger	signature:(LogEvent::ptr event)
+Logger::log	log.cc	/^void Logger::log(LogLevel::Level level, LogEvent::ptr event) {$/;"	f	class:Logger	signature:(LogLevel::Level level, LogEvent::ptr event)
+Logger::warn	log.cc	/^void Logger::warn(LogEvent::ptr event) {$/;"	f	class:Logger	signature:(LogEvent::ptr event)
+StdoutLogAppender	log.h	/^   StdoutLogAppender(){}$/;"	f	class:mysrv::LogLevel::StdoutLogAppender	access:public	signature:()
+StdoutLogAppender	log.h	/^class StdoutLogAppender : public LogAppender{$/;"	c	class:mysrv::LogLevel	inherits:LogAppender	access:public
+UNKNOW	log.h	/^      UNKNOW = 0,$/;"	e	enum:mysrv::LogLevel::Level
+WARN	log.h	/^      WARN,$/;"	e	enum:mysrv::LogLevel::Level
+__LOG_H__	log.h	3;"	d
+addAppender	log.cc	/^void Logger::addAppender(LogAppender::ptr appender) {$/;"	f	class:Logger	signature:(LogAppender::ptr appender)
+debug	log.cc	/^void Logger::debug(LogEvent::ptr event) {$/;"	f	class:Logger	signature:(LogEvent::ptr event)
+debug	log.h	/^  void debug(LogEvent::ptr level);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogEvent::ptr level)
+delAppender	log.cc	/^void Logger::delAppender(LogAppender::ptr appender) {$/;"	f	class:Logger	signature:(LogAppender::ptr appender)
+error	log.cc	/^void Logger::error(LogEvent::ptr event) {$/;"	f	class:Logger	signature:(LogEvent::ptr event)
+error	log.h	/^  void error(LogEvent::ptr level);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogEvent::ptr level)
+fatal	log.cc	/^void Logger::fatal(LogEvent::ptr event) {$/;"	f	class:Logger	signature:(LogEvent::ptr event)
+fatal	log.h	/^  void fatal(LogEvent::ptr level);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogEvent::ptr level)
+format	log.h	/^  std::string format(LogEvent::ptr event);$/;"	p	class:mysrv::LogLevel::LogFormatter	access:public	signature:(LogEvent::ptr event)
+getContent	log.h	/^    std::string getContent() const{ return m_content; }\/\/内容 $/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+getElapse	log.h	/^    uint32_t getElapse() const { return  m_elapse; } \/\/程序启动到现在开始的毫秒数$/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+getFiberId	log.h	/^    uint32_t getFiberId() const{ return m_fiberId; }$/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+getFile	log.h	/^    const char * getFile() const { return m_file;}$/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+getLevel	log.h	/^  LogLevel::Level getLevel()const {return m_level;}$/;"	f	class:mysrv::LogLevel::Logger	access:public	signature:() const
+getLine	log.h	/^    int32_t getLine() const { return m_line; }    \/\/行号$/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+getThreadId	log.h	/^    uint32_t getThreadId() const { return m_threadId; }$/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+getTime	log.h	/^    uint32_t getTime() const { return  m_time; }$/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+info	log.cc	/^void Logger::info(LogEvent::ptr event) {$/;"	f	class:Logger	signature:(LogEvent::ptr event)
+info	log.h	/^  void info(LogEvent::ptr level);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogEvent::ptr level)
+log	log.cc	/^void Logger::log(LogLevel::Level level, LogEvent::ptr event) {$/;"	f	class:Logger	signature:(LogLevel::Level level, LogEvent::ptr event)
+log	log.cc	/^void log(LogLevel::Level level ,LogEvent::ptr event);$/;"	p	file:	signature:(LogLevel::Level level ,LogEvent::ptr event)
+log	log.h	/^   virtual  void log(Log::Level level,LogEvent::ptr event) = 0;$/;"	p	class:mysrv::LogLevel::LogAppender	access:public	signature:(Log::Level level,LogEvent::ptr event)
+log	log.h	/^  void log(LogLevel::Level level,LogEvent::ptr event);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogLevel::Level level,LogEvent::ptr event)
+m_appenders	log.h	/^  std::list<LogAppender::ptr> m_appenders; \/\/Appender的集合       $/;"	m	class:mysrv::LogLevel::Logger	access:private
+m_content	log.h	/^    std::string m_content;\/\/内容  $/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+m_elapse	log.h	/^    uint32_t m_elapse; \/\/程序启动到现在开始的毫秒数$/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+m_fiberId	log.h	/^    uint32_t m_fiberId;$/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+m_file	log.h	/^    const char * m_file = nullptr;$/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+m_filestream	log.h	/^   std::ofstream m_filestream;$/;"	m	class:mysrv::LogLevel::FileLogAppender	access:private
+m_level	log.h	/^  LogLevel::Level m_level; \/\/日志级别 $/;"	m	class:mysrv::LogLevel::Logger	access:private
+m_level	log.h	/^  LogLevel::Level m_level;$/;"	m	class:mysrv::LogLevel::LogAppender	access:private
+m_line	log.h	/^    int32_t m_line;    \/\/行号$/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+m_name	log.h	/^   std::string m_name;$/;"	m	class:mysrv::LogLevel::FileLogAppender	access:private
+m_name	log.h	/^  std::string m_name;    \/\/日志名称$/;"	m	class:mysrv::LogLevel::Logger	access:private
+m_threadId	log.h	/^    uint32_t m_threadId;$/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+m_time	log.h	/^    uint32_t m_time;$/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+main	main.cc	/^int main()$/;"	f	signature:()
+mysrv	log.h	/^namespace mysrv{$/;"	n
+mysrv::LogLevel	log.h	/^class LogLevel{$/;"	c	namespace:mysrv
+mysrv::LogLevel::DEBUG	log.h	/^      DEBUG,$/;"	e	enum:mysrv::LogLevel::Level
+mysrv::LogLevel::ERROR	log.h	/^      ERROR,$/;"	e	enum:mysrv::LogLevel::Level
+mysrv::LogLevel::FATAL	log.h	/^      FATAL$/;"	e	enum:mysrv::LogLevel::Level
+mysrv::LogLevel::FileLogAppender	log.h	/^class FileLogAppender : public LogAppender{$/;"	c	class:mysrv::LogLevel	inherits:LogAppender	access:public
+mysrv::LogLevel::FileLogAppender::FileLogAppender	log.h	/^    FileLogAppender(const std::string &filename);$/;"	p	class:mysrv::LogLevel::FileLogAppender	access:public	signature:(const std::string &filename)
+mysrv::LogLevel::FileLogAppender::m_filestream	log.h	/^   std::ofstream m_filestream;$/;"	m	class:mysrv::LogLevel::FileLogAppender	access:private
+mysrv::LogLevel::FileLogAppender::m_name	log.h	/^   std::string m_name;$/;"	m	class:mysrv::LogLevel::FileLogAppender	access:private
+mysrv::LogLevel::FileLogAppender::override	log.h	/^    void log(LogLevel::Level level ,LogEvent::ptr event)override;$/;"	m	class:mysrv::LogLevel::FileLogAppender	access:public
+mysrv::LogLevel::FileLogAppender::ptr	log.h	/^    typedef std::shared_ptr<LogAppender> ptr;$/;"	t	class:mysrv::LogLevel::FileLogAppender	access:public
+mysrv::LogLevel::INFO	log.h	/^      INFO,$/;"	e	enum:mysrv::LogLevel::Level
+mysrv::LogLevel::Level	log.h	/^    enum Level{$/;"	g	class:mysrv::LogLevel	access:public
+mysrv::LogLevel::LogAppender	log.h	/^class LogAppender{$/;"	c	class:mysrv::LogLevel	access:public
+mysrv::LogLevel::LogAppender::LogAppender	log.h	/^   LogAppender(){};$/;"	f	class:mysrv::LogLevel::LogAppender	access:public	signature:()
+mysrv::LogLevel::LogAppender::log	log.h	/^   virtual  void log(Log::Level level,LogEvent::ptr event) = 0;$/;"	p	class:mysrv::LogLevel::LogAppender	access:public	signature:(Log::Level level,LogEvent::ptr event)
+mysrv::LogLevel::LogAppender::m_level	log.h	/^  LogLevel::Level m_level;$/;"	m	class:mysrv::LogLevel::LogAppender	access:private
+mysrv::LogLevel::LogAppender::ptr	log.h	/^   typedef std::shared_ptr< LogAppender > ptr; $/;"	t	class:mysrv::LogLevel::LogAppender	access:public
+mysrv::LogLevel::LogEvent	log.h	/^class LogEvent{$/;"	c	class:mysrv::LogLevel	access:public
+mysrv::LogLevel::LogEvent::LogEvent	log.h	/^    LogEvent();$/;"	p	class:mysrv::LogLevel::LogEvent	access:public	signature:()
+mysrv::LogLevel::LogEvent::getContent	log.h	/^    std::string getContent() const{ return m_content; }\/\/内容 $/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+mysrv::LogLevel::LogEvent::getElapse	log.h	/^    uint32_t getElapse() const { return  m_elapse; } \/\/程序启动到现在开始的毫秒数$/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+mysrv::LogLevel::LogEvent::getFiberId	log.h	/^    uint32_t getFiberId() const{ return m_fiberId; }$/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+mysrv::LogLevel::LogEvent::getFile	log.h	/^    const char * getFile() const { return m_file;}$/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+mysrv::LogLevel::LogEvent::getLine	log.h	/^    int32_t getLine() const { return m_line; }    \/\/行号$/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+mysrv::LogLevel::LogEvent::getThreadId	log.h	/^    uint32_t getThreadId() const { return m_threadId; }$/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+mysrv::LogLevel::LogEvent::getTime	log.h	/^    uint32_t getTime() const { return  m_time; }$/;"	f	class:mysrv::LogLevel::LogEvent	access:public	signature:() const
+mysrv::LogLevel::LogEvent::m_content	log.h	/^    std::string m_content;\/\/内容  $/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+mysrv::LogLevel::LogEvent::m_elapse	log.h	/^    uint32_t m_elapse; \/\/程序启动到现在开始的毫秒数$/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+mysrv::LogLevel::LogEvent::m_fiberId	log.h	/^    uint32_t m_fiberId;$/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+mysrv::LogLevel::LogEvent::m_file	log.h	/^    const char * m_file = nullptr;$/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+mysrv::LogLevel::LogEvent::m_line	log.h	/^    int32_t m_line;    \/\/行号$/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+mysrv::LogLevel::LogEvent::m_threadId	log.h	/^    uint32_t m_threadId;$/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+mysrv::LogLevel::LogEvent::m_time	log.h	/^    uint32_t m_time;$/;"	m	class:mysrv::LogLevel::LogEvent	access:private
+mysrv::LogLevel::LogEvent::ptr	log.h	/^    typedef shared_ptr<LogEvent> ptr;$/;"	t	class:mysrv::LogLevel::LogEvent	access:public
+mysrv::LogLevel::LogFormatter	log.h	/^class LogFormatter{$/;"	c	class:mysrv::LogLevel	access:public
+mysrv::LogLevel::LogFormatter::LogFormatter	log.h	/^  LogFormatter();$/;"	p	class:mysrv::LogLevel::LogFormatter	access:public	signature:()
+mysrv::LogLevel::LogFormatter::format	log.h	/^  std::string format(LogEvent::ptr event);$/;"	p	class:mysrv::LogLevel::LogFormatter	access:public	signature:(LogEvent::ptr event)
+mysrv::LogLevel::LogFormatter::ptr	log.h	/^  typedef std::shared_ptr<LogFormatter> ptr;  $/;"	t	class:mysrv::LogLevel::LogFormatter	access:public
+mysrv::LogLevel::LogFormatter::~LogFormatter	log.h	/^  virtual ~LogFormatter(){}$/;"	f	class:mysrv::LogLevel::LogFormatter	access:public	signature:()
+mysrv::LogLevel::Logger	log.h	/^class Logger{$/;"	c	class:mysrv::LogLevel	access:public
+mysrv::LogLevel::Logger::AddAppender	log.h	/^  void AddAppender(LogAppender::ptr appender);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogAppender::ptr appender)
+mysrv::LogLevel::Logger::DelAppender	log.h	/^  void DelAppender(LogAppender::ptr appender);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogAppender::ptr appender)
+mysrv::LogLevel::Logger::Logger	log.h	/^  Logger(const std::string & name = "root");$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(const std::string & name = �)
+mysrv::LogLevel::Logger::debug	log.h	/^  void debug(LogEvent::ptr level);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogEvent::ptr level)
+mysrv::LogLevel::Logger::error	log.h	/^  void error(LogEvent::ptr level);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogEvent::ptr level)
+mysrv::LogLevel::Logger::fatal	log.h	/^  void fatal(LogEvent::ptr level);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogEvent::ptr level)
+mysrv::LogLevel::Logger::getLevel	log.h	/^  LogLevel::Level getLevel()const {return m_level;}$/;"	f	class:mysrv::LogLevel::Logger	access:public	signature:() const
+mysrv::LogLevel::Logger::info	log.h	/^  void info(LogEvent::ptr level);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogEvent::ptr level)
+mysrv::LogLevel::Logger::log	log.h	/^  void log(LogLevel::Level level,LogEvent::ptr event);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogLevel::Level level,LogEvent::ptr event)
+mysrv::LogLevel::Logger::m_appenders	log.h	/^  std::list<LogAppender::ptr> m_appenders; \/\/Appender的集合       $/;"	m	class:mysrv::LogLevel::Logger	access:private
+mysrv::LogLevel::Logger::m_level	log.h	/^  LogLevel::Level m_level; \/\/日志级别 $/;"	m	class:mysrv::LogLevel::Logger	access:private
+mysrv::LogLevel::Logger::m_name	log.h	/^  std::string m_name;    \/\/日志名称$/;"	m	class:mysrv::LogLevel::Logger	access:private
+mysrv::LogLevel::Logger::ptr	log.h	/^  typedef std::shared_ptr<Logger> ptr;$/;"	t	class:mysrv::LogLevel::Logger	access:public
+mysrv::LogLevel::Logger::setLevel	log.h	/^  void setLevel(LogLevel::Level level){ m_level = level}$/;"	f	class:mysrv::LogLevel::Logger	access:public	signature:(LogLevel::Level level)
+mysrv::LogLevel::Logger::warn	log.h	/^  void warn(LogEvent::ptr level);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogEvent::ptr level)
+mysrv::LogLevel::StdoutLogAppender	log.h	/^class StdoutLogAppender : public LogAppender{$/;"	c	class:mysrv::LogLevel	inherits:LogAppender	access:public
+mysrv::LogLevel::StdoutLogAppender::StdoutLogAppender	log.h	/^   StdoutLogAppender(){}$/;"	f	class:mysrv::LogLevel::StdoutLogAppender	access:public	signature:()
+mysrv::LogLevel::StdoutLogAppender::override	log.h	/^ void log(LogLevel::Level level ,LogEvent::ptr event)override;$/;"	m	class:mysrv::LogLevel::StdoutLogAppender	access:public
+mysrv::LogLevel::StdoutLogAppender::ptr	log.h	/^   typedef std::shared_ptr< LogAppender > ptr;$/;"	t	class:mysrv::LogLevel::StdoutLogAppender	access:public
+mysrv::LogLevel::UNKNOW	log.h	/^      UNKNOW = 0,$/;"	e	enum:mysrv::LogLevel::Level
+mysrv::LogLevel::WARN	log.h	/^      WARN,$/;"	e	enum:mysrv::LogLevel::Level
+override	log.h	/^    void log(LogLevel::Level level ,LogEvent::ptr event)override;$/;"	m	class:mysrv::LogLevel::FileLogAppender	access:public
+override	log.h	/^ void log(LogLevel::Level level ,LogEvent::ptr event)override;$/;"	m	class:mysrv::LogLevel::StdoutLogAppender	access:public
+ptr	log.h	/^    typedef shared_ptr<LogEvent> ptr;$/;"	t	class:mysrv::LogLevel::LogEvent	access:public
+ptr	log.h	/^    typedef std::shared_ptr<LogAppender> ptr;$/;"	t	class:mysrv::LogLevel::FileLogAppender	access:public
+ptr	log.h	/^   typedef std::shared_ptr< LogAppender > ptr; $/;"	t	class:mysrv::LogLevel::LogAppender	access:public
+ptr	log.h	/^   typedef std::shared_ptr< LogAppender > ptr;$/;"	t	class:mysrv::LogLevel::StdoutLogAppender	access:public
+ptr	log.h	/^  typedef std::shared_ptr<LogFormatter> ptr;  $/;"	t	class:mysrv::LogLevel::LogFormatter	access:public
+ptr	log.h	/^  typedef std::shared_ptr<Logger> ptr;$/;"	t	class:mysrv::LogLevel::Logger	access:public
+setLevel	log.h	/^  void setLevel(LogLevel::Level level){ m_level = level}$/;"	f	class:mysrv::LogLevel::Logger	access:public	signature:(LogLevel::Level level)
+warn	log.cc	/^void Logger::warn(LogEvent::ptr event) {$/;"	f	class:Logger	signature:(LogEvent::ptr event)
+warn	log.h	/^  void warn(LogEvent::ptr level);$/;"	p	class:mysrv::LogLevel::Logger	access:public	signature:(LogEvent::ptr level)
+~LogFormatter	log.h	/^  virtual ~LogFormatter(){}$/;"	f	class:mysrv::LogLevel::LogFormatter	access:public	signature:()

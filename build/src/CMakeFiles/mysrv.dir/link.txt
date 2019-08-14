@@ -1,0 +1,1 @@
+/opt/rh/devtoolset-2/root/usr/bin/c++  -fPIC  -rdynamic -O0 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function   -shared -Wl,-soname,libmysrv.so -o ../../lib/libmysrv.so CMakeFiles/mysrv.dir/log.cc.o CMakeFiles/mysrv.dir/main.cc.o 
