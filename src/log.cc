@@ -4,6 +4,7 @@
 
 namespace mysrv{
 
+
 const char* LogLevel :: ToString( LogLevel::Level level) {
     switch(level) {
 #define XX(name) \
@@ -23,10 +24,11 @@ const char* LogLevel :: ToString( LogLevel::Level level) {
     return "UNKNOW";
 }
 
-LogEvent::LogEvent(Logger::ptr logger, const char * file,int32_t line ,\
+LogEvent::LogEvent(Logger::ptr logger, LogLevel::Level level,const char * file,int32_t line ,\
         uint32_t elapse ,uint32_t threadid,\
         uint32_t fiberid , uint64_t time ,const std::string&  threadname)
     :m_logger(logger),
+    m_level(level),
     m_file(file),
     m_line(line),
     m_elapse(elapse),
@@ -36,10 +38,23 @@ LogEvent::LogEvent(Logger::ptr logger, const char * file,int32_t line ,\
     m_threadName(threadname) {
     }
 
+LogEventWrap::LogEventWrap(LogEvent::ptr e)
+{
+    m_event = e;
+}
 
+LogEventWrap::~LogEventWrap()
+{
+         m_event->getLogger()->log(m_event->getLevel(),m_event);
+}
+
+std::stringstream& LogEventWrap::getSS()
+{
+    return m_event->getSS();
+}
 Logger::Logger(const std::string& name)
         :m_name(name)
-        ,m_level(LogLevel::DEBUG)   
+        ,m_level(LogLevel::DEBUG)
 {
    m_formatter.reset(new LogFormatter("%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"));
 }
@@ -112,13 +127,13 @@ bool FileLogAppender::reopen()
 {
     if(m_filestream) m_filestream.close();
     m_filestream.open(m_filename);
-    return m_filestream;
+    return m_filestream.is_open();
 }
 
 void StdoutLogAppender::log(std::shared_ptr<Logger> logger,LogLevel::Level level ,LogEvent::ptr event)
 {
     if(level >= m_level)
-    { 
+    {
       std::cout << m_formatter->format(logger , level ,event);
     }
 }
@@ -180,7 +195,7 @@ class ThreadNameFormatItem : public LogFormatter::FormatItem {
                                 }
 };
 
-class DateTimeFormatItem : public LogFormatter::FormatItem { 
+class DateTimeFormatItem : public LogFormatter::FormatItem {
 public:
     DateTimeFormatItem(const std::string& format = "%Y-%m-%d %H:%M:%S")
     :m_format(format) {
@@ -188,7 +203,7 @@ public:
                 m_format = "%Y-%m-%d %H:%M:%S";
             }
         }
-    void format(std::ostream& os, Logger::ptr logger, LogLevel::Level level, LogEvent::ptr event) override{ 
+    void format(std::ostream& os, Logger::ptr logger, LogLevel::Level level, LogEvent::ptr event) override{
     struct tm tm;
     time_t time = event->getTime();
     localtime_r(&time, &tm);
@@ -344,20 +359,19 @@ void LogFormatter::init() {
     }
     static std::map<std::string, std::function<FormatItem::ptr(const std::string& str)> > s_format_items = {
 #define XX(str, C) \
-        {#str, [](const std::string& fmt) { return FormatItem::ptr(new C(fmt));}}
-
-        XX(m, MessageFormatItem),           //m:消息
-        XX(p, LevelFormatItem),             //p:日志级别
-        XX(r, ElapseFormatItem),            //r:累计毫秒数
-        XX(c, NameFormatItem),              //c:日志名称
-        XX(t, ThreadIdFormatItem),          //t:线程id
-        XX(n, NewLineFormatItem),           //n:换行
-        XX(d, DateTimeFormatItem),          //d:时间
-        XX(f, FilenameFormatItem),          //f:文件名
-        XX(l, LineFormatItem),              //l:行号
-        XX(T, TabFormatItem),               //T:Tab
-        XX(F, FiberIdFormatItem),           //F:协程id
-        XX(N, ThreadNameFormatItem),        //N:线程名称
+ {#str, [](const std::string& fmt) { return FormatItem::ptr(new C(fmt));}}
+        XX(m, MessageFormatItem),
+        XX(p, LevelFormatItem),
+        XX(r, ElapseFormatItem),
+        XX(c, NameFormatItem),
+        XX(t, ThreadIdFormatItem),
+        XX(n, NewLineFormatItem),
+        XX(d, DateTimeFormatItem),
+        XX(f, FilenameFormatItem),
+        XX(l, LineFormatItem),
+        XX(T, TabFormatItem),
+        XX(F, FiberIdFormatItem),
+        XX(N, ThreadNameFormatItem),
 #undef XX
     };
 
