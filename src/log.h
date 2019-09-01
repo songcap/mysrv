@@ -14,6 +14,11 @@
 #include <ostream>
 #include "util.h"
 
+#define SYLAR_LOG_LEVEL(logger, level) \
+    if(logger->getLevel() <= level) \
+        mysrv::LogEventWrap(mysrv::LogEvent::ptr(new mysrv::LogEvent(logger, level, \
+                        __FILE__, __LINE__, 0, mysrv::GetThreadId(),\
+                mysrv::GetFiberId(), time(0), mysrv::Thread::GetName()))).getSS()
 
 namespace mysrv{
 
@@ -199,21 +204,17 @@ private:
    std::ofstream m_filestream;
 };
 
-std::stringstream LOG_LEVEL(mysrv::Logger::ptr logger , mysrv::LogLevel::Level level)
-{
-    if(logger->getLevel() <=  level )
-       mysrv::LogEventWrap( mysrv::LogEvent::ptr (new mysrv::LogEvent(logger , level,__FILE__, __LINE__, 0 ,\
-       mysrv::GetThreadPid(),0,time(0),"sum"))).getSS() ;
+std::stringstream& LOG_LEVEL(mysrv::Logger::ptr logger , mysrv::LogLevel::Level level);
+
+std::stringstream&  MYSER_LOG_DEBUG(Logger::ptr logger);
+std::stringstream&  MYSER_LOG_INFO   (Logger::ptr logger,std::string str);
+std::stringstream&  MYSER_LOG_WARN(Logger::ptr logger);
+std::stringstream&  MYSER_LOG_ERROR(Logger::ptr logger);
+std::stringstream&  MYSER_LOG_FATAL(Logger::ptr logger)  ;
+
 }
 
 
-}
 
-
-#define  MYSER_LOG_DEBUG(logger)  { mysrv::LOG_LEVEL(logger,mysrv::LogLevel::DEBUG ); }
-#define  MYSER_LOG_INFO   (logger)   { mysrv::LOG_LEVEL(logger,mysrv::LogLevel::INFO ); }
-#define  MYSER_LOG_WARN(logger)   { mysrv::LOG_LEVEL(logger,mysrv::LogLevel::WARN );}
-#define  MYSER_LOG_ERROR(logger)  {mysrv::LOG_LEVEL(logger,mysrv::LogLevel::ERROR );}
-#define  MYSER_LOG_FATAL(logger)    {  mysrv::LOG_LEVEL(logger,mysrv::LogLevel::FATAL );}
 
 #endif /*__LOG_H__*/
