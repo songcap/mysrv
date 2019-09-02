@@ -13,12 +13,9 @@
 #include <map>
 #include <ostream>
 #include "util.h"
+#include "singleton.h"
 
-#define SYLAR_LOG_LEVEL(logger, level) \
-    if(logger->getLevel() <= level) \
-        mysrv::LogEventWrap(mysrv::LogEvent::ptr(new mysrv::LogEvent(logger, level, \
-                        __FILE__, __LINE__, 0, mysrv::GetThreadId(),\
-                mysrv::GetFiberId(), time(0), mysrv::Thread::GetName()))).getSS()
+#define MYSRV_LOG_ROOT mysrv::LoggerManager::GetInstance()->getRoot()
 
 namespace mysrv{
 
@@ -142,6 +139,9 @@ public:
    virtual  void log(std::shared_ptr<Logger> logger,LogLevel::Level level,LogEvent::ptr event) = 0;
    void setFormatter(LogFormatter::ptr ptr) { m_formatter = ptr; }
    LogFormatter::ptr getFormatter() const  { return m_formatter; }
+
+  void setLevel(LogLevel::Level  level){m_level = level;}
+  LogLevel::Level getLevel() const {return m_level;}
 protected:
   LogLevel::Level m_level;
   LogFormatter::ptr m_formatter;
@@ -183,6 +183,23 @@ private:
   std::list<LogAppender::ptr> m_appenders; //Appender鐨勯泦鍚�
   LogFormatter::ptr m_formatter;
 };
+/***********
+管理所有的logger
+以及负责读取配置文件内部的信息
+************/
+class LogManager{
+public:
+    LogManager();
+    Logger::ptr getLogger(const std::string & name);
+
+    void init();
+    Logger::ptr getRoot() const {return m_root;}
+private:
+    std::map<std::string , Logger::ptr> m_loggers;
+    Logger::ptr m_root;
+};
+
+typedef mysrv::Singleton<LogManager> LoggerManager;
 
 class StdoutLogAppender : public LogAppender{
 public:
@@ -204,13 +221,13 @@ private:
    std::ofstream m_filestream;
 };
 
-std::stringstream& LOG_LEVEL(mysrv::Logger::ptr logger , mysrv::LogLevel::Level level);
+void LOG_LEVEL(mysrv::Logger::ptr logger , mysrv::LogLevel::Level level ,  std::string str);
 
-std::stringstream&  MYSER_LOG_DEBUG(Logger::ptr logger);
-std::stringstream&  MYSER_LOG_INFO   (Logger::ptr logger,std::string str);
-std::stringstream&  MYSER_LOG_WARN(Logger::ptr logger);
-std::stringstream&  MYSER_LOG_ERROR(Logger::ptr logger);
-std::stringstream&  MYSER_LOG_FATAL(Logger::ptr logger)  ;
+void  MYSER_LOG_DEBUG(Logger::ptr logger, std::string str);
+void MYSER_LOG_INFO   (Logger::ptr logger,std::string str);
+void MYSER_LOG_WARN(Logger::ptr logger, std::string str);
+void  MYSER_LOG_ERROR(Logger::ptr logger , std::string str);
+void  MYSER_LOG_FATAL(Logger::ptr logger,  std::string str)  ;
 
 }
 

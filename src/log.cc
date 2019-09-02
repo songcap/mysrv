@@ -45,7 +45,6 @@ LogEventWrap::LogEventWrap(LogEvent::ptr e)
 
 LogEventWrap::~LogEventWrap()
 {
-         std::cout << "in the destory " << std::endl;
          m_event->getLogger()->log(m_event->getLevel(),m_event);
 }
 
@@ -57,10 +56,23 @@ Logger::Logger(const std::string& name)
         :m_name(name)
         ,m_level(LogLevel::DEBUG)
 {
-   m_formatter.reset(new LogFormatter("%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"));
+   m_formatter.reset(new LogFormatter("%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m"));
 }
 
+LogManager::LogManager()
+{
+    m_root.reset(new Logger);
+    m_root->AddAppender(LogAppender::ptr(new StdoutLogAppender));
+}
 
+Logger::ptr LogManager::getLogger(const std::string & name){
+    auto it = m_loggers.find(name);
+    return it == m_loggers.end() ? m_root : it->second;
+}
+
+void LogManager::init(){
+
+}
 
 void Logger::AddAppender(LogAppender::ptr appender)
 {
@@ -114,13 +126,15 @@ void Logger::fatal(LogEvent::ptr event) {
         log(LogLevel::FATAL, event);
 }
 
-
+FileLogAppender::FileLogAppender(const std::string &filename):m_filename(filename){
+     reopen();
+}
 
 void FileLogAppender::log(std::shared_ptr<Logger> logger,LogLevel::Level level ,LogEvent::ptr event)
 {
-   if(level > m_level)
+   if(level >= m_level)
    {
-            m_filestream << m_formatter->format(logger , level ,event);
+            m_filestream << m_formatter->format(logger , level ,event)  << event->getSS().str();
    }
 }
 
@@ -135,7 +149,7 @@ void StdoutLogAppender::log(std::shared_ptr<Logger> logger,LogLevel::Level level
 {
     if(level >= m_level)
     {
-      std::cout << m_formatter->format(logger , level ,event) << std::endl;
+      std::cout << m_formatter->format(logger , level ,event) << event->getSS().str() << std::endl;
     }
 }
 
@@ -394,21 +408,20 @@ void LogFormatter::init() {
     //std::cout << m_items.size() << std::endl;
 }
 
-std::stringstream&  LOG_LEVEL(mysrv::Logger::ptr logger , mysrv::LogLevel::Level level)
+void  LOG_LEVEL(mysrv::Logger::ptr logger , mysrv::LogLevel::Level level, std::string str)
 {
     if(logger->getLevel() <=  level )
     {
         std::shared_ptr< mysrv::LogEventWrap>  wraps( new LogEventWrap (LogEvent::ptr (new mysrv::LogEvent(logger , level,__FILE__, __LINE__, 0 ,\
         mysrv::GetThreadPid(),0,time(0),"sum")))) ;
-         //wraps->getSS() <<  "test marco";
-        return  wraps->getSS();
+        wraps->getSS()  <<  str;
     }
 }
 
-std::stringstream&  MYSER_LOG_DEBUG(Logger::ptr logger) { return LOG_LEVEL(logger,mysrv::LogLevel::DEBUG ); }
-std::stringstream&  MYSER_LOG_INFO   (Logger::ptr logger ,std::string str)   { return LOG_LEVEL(logger,mysrv::LogLevel::INFO ); }
-std::stringstream&  MYSER_LOG_WARN(Logger::ptr logger)   { return LOG_LEVEL(logger,mysrv::LogLevel::WARN );}
-std::stringstream&  MYSER_LOG_ERROR(Logger::ptr logger)  { return LOG_LEVEL(logger,mysrv::LogLevel::ERROR );}
-std::stringstream&  MYSER_LOG_FATAL(Logger::ptr logger)    { return LOG_LEVEL(logger,mysrv::LogLevel::FATAL );}
+void  MYSER_LOG_DEBUG(Logger::ptr logger, std::string str) {  LOG_LEVEL(logger,mysrv::LogLevel::DEBUG ,str); }
+void  MYSER_LOG_INFO   (Logger::ptr logger ,std::string str)   {  LOG_LEVEL(logger,mysrv::LogLevel::INFO ,str); }
+void  MYSER_LOG_WARN(Logger::ptr logger ,  std::string str)   {  LOG_LEVEL(logger,mysrv::LogLevel::WARN ,str);}
+void  MYSER_LOG_ERROR(Logger::ptr logger, std::string str)  {  LOG_LEVEL(logger,mysrv::LogLevel::ERROR ,str);}
+void  MYSER_LOG_FATAL(Logger::ptr logger,  std::string str)    {  LOG_LEVEL(logger,mysrv::LogLevel::FATAL ,str);}
 
 }
