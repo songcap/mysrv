@@ -42,7 +42,7 @@ void print_yaml (const YAML::Node & node , int level)
         }
         else if(node.IsSequence()){
                 for(size_t i= 0 ; i < node.size() ; i ++){
-                    ss <<  std::string(level * 4 , ' ') <<  i \
+                    ss <<  std::string(level * 4 , ' ') << node[i] \
                   <<  " - " <<  node[i].Type() << " - " << level;
                   std::cout << ss.str() << std::endl;
                     MYSER_LOG_INFO(MYSRV_LOG_ROOT,ss.str());

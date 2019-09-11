@@ -3,7 +3,7 @@
 #include <memory>
 #include <sstream>
 #include <boost/lexical_cast.hpp>
-
+#include <yaml-cpp/yaml.h>
 #include "log.h"
 
 namespace mysrv{
@@ -14,7 +14,7 @@ public:
     ConfigVarBase(std::string name , std::string des)
     :m_name(name) ,
     m_description(des){
-
+       std::transform(m_name.end() , m_name.begin() ,  ::tolower);
     }
     virtual ~ConfigVarBase() {}
     const std::string & getName() const{ return m_name; }
@@ -37,6 +37,7 @@ public:
              const std::string &description = "" )
              : ConfigVarBase(name,description),
              m_val(value)  {
+
         }
 
         std::string toString()  override  {
@@ -101,6 +102,10 @@ public:
             }
             return std::dynamic_pointer_cast<ConfigVar<T> > (it->second);
     }
+
+    static void LoadFromYaml(const  YAML::Node& root);
+
+    static   ConfigVarBase LookupBase(const std::string &name );
 
 private:
     static   ConfigVarMap s_datas;
