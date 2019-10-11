@@ -224,8 +224,8 @@ private:
 void LOG_LEVEL(mysrv::Logger::ptr logger , mysrv::LogLevel::Level level ,  std::string str);
 
 void  MYSER_LOG_DEBUG(Logger::ptr logger, std::string str);
-void MYSER_LOG_INFO   (Logger::ptr logger,std::string str);
-void MYSER_LOG_WARN(Logger::ptr logger, std::string str);
+void  MYSER_LOG_INFO   (Logger::ptr logger,std::string str);
+void  MYSER_LOG_WARN(Logger::ptr logger, std::string str);
 void  MYSER_LOG_ERROR(Logger::ptr logger , std::string str);
 void  MYSER_LOG_FATAL(Logger::ptr logger,  std::string str)  ;
 
